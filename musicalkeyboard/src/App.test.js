@@ -1,8 +1,16 @@
-import { render, screen } from '@testing-library/react';
 import App from './App';
+import React from 'react';
+import { shallow } from 'enzyme';
 
-test('renders learn react link', () => {
-  render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+const app = 'Test App'
+let wrapped = shallow(<App>{app}</App>);
+
+describe('App', () => {
+  it('should render the App componente', () => {
+    expect(wrapped).toMatchSnapshot();
+  });
+
+  it('renders Keyboard in App', () => {
+    expect(wrapped.find('Keyboard'));
+  });
 });
